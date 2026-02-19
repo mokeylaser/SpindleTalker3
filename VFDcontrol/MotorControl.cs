@@ -40,7 +40,7 @@ namespace VfdControl
             {
                 throw new Exception("Parity must be 0, 1, 2, 3 or 4");
             }
-            if (stopBits < 0 || parity > 3)
+            if (stopBits < 0 || stopBits > 3)
             {
                 throw new Exception("StopBits must be 0, 1, 2 or 3");
             }

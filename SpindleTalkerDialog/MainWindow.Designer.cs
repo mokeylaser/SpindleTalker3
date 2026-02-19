@@ -38,7 +38,7 @@
             this.flowLayoutPanelQuickSets = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanelSpindle = new System.Windows.Forms.TableLayoutPanel();
             this.groupBoxSpindleSpeed = new System.Windows.Forms.GroupBox();
-            this.gTrackBarSpindleSpeed = new gTrackBar.gTrackBar();
+            this.gTrackBarSpindleSpeed = new System.Windows.Forms.TrackBar();
             this.toolTipBase = new System.Windows.Forms.ToolTip(this.components);
             this.panelMDI = new System.Windows.Forms.Panel();
             this.tableLayoutPanelBase = new System.Windows.Forms.TableLayoutPanel();
@@ -166,35 +166,23 @@
             this.groupBoxSpindleSpeed.TabIndex = 8;
             this.groupBoxSpindleSpeed.TabStop = false;
             this.groupBoxSpindleSpeed.Text = "Spindle Speed";
-            // 
+            //
             // gTrackBarSpindleSpeed
-            // 
-            this.gTrackBarSpindleSpeed.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            //
             this.gTrackBarSpindleSpeed.BackColor = System.Drawing.SystemColors.Control;
-            this.gTrackBarSpindleSpeed.ChangeLarge = 1000;
-            this.gTrackBarSpindleSpeed.ChangeSmall = 100;
+            this.gTrackBarSpindleSpeed.LargeChange = 1000;
+            this.gTrackBarSpindleSpeed.SmallChange = 100;
             this.gTrackBarSpindleSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gTrackBarSpindleSpeed.JumpToMouse = true;
-            this.gTrackBarSpindleSpeed.Label = "Speed";
             this.gTrackBarSpindleSpeed.Location = new System.Drawing.Point(10, 16);
             this.gTrackBarSpindleSpeed.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
-            this.gTrackBarSpindleSpeed.MaxValue = 3600;
+            this.gTrackBarSpindleSpeed.Maximum = 3600;
             this.gTrackBarSpindleSpeed.Name = "gTrackBarSpindleSpeed";
             this.gTrackBarSpindleSpeed.Size = new System.Drawing.Size(157, 60);
-            this.gTrackBarSpindleSpeed.SliderCapEnd = System.Drawing.Drawing2D.LineCap.NoAnchor;
-            this.gTrackBarSpindleSpeed.SliderSize = new System.Drawing.Size(15, 15);
-            this.gTrackBarSpindleSpeed.SliderWidthHigh = 3F;
-            this.gTrackBarSpindleSpeed.SliderWidthLow = 3F;
             this.gTrackBarSpindleSpeed.TabIndex = 0;
             this.gTrackBarSpindleSpeed.TabStop = false;
-            this.gTrackBarSpindleSpeed.TickInterval = 2400;
-            this.gTrackBarSpindleSpeed.TickThickness = 1F;
-            this.gTrackBarSpindleSpeed.UpDownShow = false;
-            this.gTrackBarSpindleSpeed.Value = 6000;
-            this.gTrackBarSpindleSpeed.ValueAdjusted = 6000F;
-            this.gTrackBarSpindleSpeed.ValueDivisor = gTrackBar.gTrackBar.eValueDivisor.e1;
-            this.gTrackBarSpindleSpeed.ValueStrFormat = null;
-            this.gTrackBarSpindleSpeed.ValueChanged += new gTrackBar.gTrackBar.ValueChangedEventHandler(this.gTrackBarSpindleSpeed_ValueChanged);
+            this.gTrackBarSpindleSpeed.TickFrequency = 2400;
+            this.gTrackBarSpindleSpeed.Value = 0;
+            this.gTrackBarSpindleSpeed.ValueChanged += new System.EventHandler(this.gTrackBarSpindleSpeed_ValueChanged);
             this.gTrackBarSpindleSpeed.DoubleClick += new System.EventHandler(this.gTrackBarSpindleSpeed_DoubleClick);
             // 
             // panelMDI
@@ -411,7 +399,7 @@
         private System.Windows.Forms.Button buttonGraphs;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBase;
         private System.Windows.Forms.Panel panelMain;
-        private gTrackBar.gTrackBar gTrackBarSpindleSpeed;
+        private System.Windows.Forms.TrackBar gTrackBarSpindleSpeed;
         private System.Windows.Forms.CheckBox checkBoxReverse;
         private System.Windows.Forms.Button buttonConnect;
         private System.Windows.Forms.Timer timerInitialPoll;

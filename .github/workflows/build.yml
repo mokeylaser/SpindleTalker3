@@ -13,7 +13,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: 8.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -44,13 +44,13 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: 8.0.x
     - name: Generate app files
       run: dotnet publish -c Release
     - uses: actions/upload-artifact@v4 # make the files available to next action that will zip and release the app from linux
       with:
         name: appfiles
-        path: SpindleTalkerDialog/bin/Release/net5.0-windows/publish/
+        path: SpindleTalkerDialog/bin/Release/net8.0-windows/publish/
     - name: publish VfdControl to nuget #only when building on master and when tagging
       if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || startsWith(github.ref, 'refs/tags') }}
       run: dotnet nuget push VfdControl\bin\Release\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.CA_NUGET_PACKAGES_KEY }}

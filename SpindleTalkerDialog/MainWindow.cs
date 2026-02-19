@@ -54,6 +54,7 @@ namespace SpindleTalker2
             _hyMotorControl._hyModbus.BaudRate = VFDsettings.BaudRate;
             _hyMotorControl._hyModbus.ModBusID = VFDsettings.VFD_ModBusID;
             _hyMotorControl._hyModbus.VFDData.OnSerialPortConnected += COMPortStatus;
+            _hyMotorControl._hyModbus.VFDData.OnChanged += VFDdata_OnChanged;
             _hyMotorControl._hyModbus.OnWriteLog += HYmodbus_OnWriteLog;
 
             var settingsForm = new SettingsControl(this);
@@ -204,7 +205,8 @@ namespace SpindleTalker2
         {
             string senderText = (sender as Button).Text;
             string targetRPM = Regex.Replace(senderText, "[^0-9]", "");
-            gTrackBarSpindleSpeed.Value = Convert.ToInt32(targetRPM);
+            int rpm = Math.Min(Convert.ToInt32(targetRPM), gTrackBarSpindleSpeed.Maximum);
+            gTrackBarSpindleSpeed.Value = rpm;
         }
 
         #endregion
@@ -251,36 +253,22 @@ namespace SpindleTalker2
             _hyMotorControl.SetRPM(gTrackBarSpindleSpeed.Value);
         }
 
-        // I like this open source trackbar control but it doesn't implement being greyed out when disabled 
-        private void ChangeGtrackbarColours(bool Enabled)
+        private void VFDdata_OnChanged(VFDdata data)
         {
-            gTrackBar.ColorPack colorPack1 = new gTrackBar.ColorPack();
-            gTrackBar.ColorLinearGradient colorLinearGradient1 = new gTrackBar.ColorLinearGradient();
-            gTrackBar.ColorLinearGradient colorLinearGradient2 = new gTrackBar.ColorLinearGradient();
-
-            if (Enabled)
+            if (this.InvokeRequired)
             {
-                gTrackBarSpindleSpeed.ColorUp = colorPack1;
-                colorLinearGradient1.ColorA = System.Drawing.Color.DarkGray;
-                colorLinearGradient1.ColorB = System.Drawing.Color.DarkGray;
-                this.gTrackBarSpindleSpeed.SliderColorHigh = colorLinearGradient1;
-                colorLinearGradient2.ColorA = System.Drawing.Color.Red;
-                colorLinearGradient2.ColorB = System.Drawing.Color.Red;
-                this.gTrackBarSpindleSpeed.SliderColorLow = colorLinearGradient2;
+                try { this.Invoke(new Action(() => VFDdata_OnChanged(data))); } catch { }
             }
             else
             {
-                colorPack1.Border = System.Drawing.Color.LightGray;
-                colorPack1.Face = System.Drawing.Color.LightGray;
-                colorPack1.Highlight = System.Drawing.Color.AliceBlue;
-                gTrackBarSpindleSpeed.ColorUp = colorPack1;
-                colorLinearGradient1.ColorA = System.Drawing.Color.LightGray;
-                colorLinearGradient1.ColorB = System.Drawing.Color.LightGray;
-                this.gTrackBarSpindleSpeed.SliderColorHigh = colorLinearGradient1;
-                colorLinearGradient2.ColorA = System.Drawing.Color.LightGray;
-                colorLinearGradient2.ColorB = System.Drawing.Color.LightGray;
-                this.gTrackBarSpindleSpeed.SliderColorLow = colorLinearGradient2;
+                if (data.MaxRPM > 0)
+                    gTrackBarSpindleSpeed.Maximum = data.MaxRPM;
             }
+        }
+
+        private void ChangeGtrackbarColours(bool enabled)
+        {
+            gTrackBarSpindleSpeed.Enabled = enabled;
         }
 
         private void checkBoxReverse_CheckedChanged(object sender, EventArgs e)
@@ -308,7 +296,7 @@ namespace SpindleTalker2
                     ChangeGtrackbarColours(true);
                     groupBoxQuickSets.Enabled = true;
                     PopulateQuickSets();
-                    gTrackBarSpindleSpeed.Value = (int)_meterControl.MeterRPM.Value;
+                    gTrackBarSpindleSpeed.Value = Math.Min((int)_meterControl.MeterRPM.Value, gTrackBarSpindleSpeed.Maximum);
                     //this.ResumeLayout();
                 }
             }

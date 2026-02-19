@@ -1,13 +1,13 @@
-﻿namespace SpindleTalker2
+namespace SpindleTalker2
 {
     partial class GCSMeter
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -22,22 +22,22 @@
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.groupBoxBase = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelBase = new System.Windows.Forms.TableLayoutPanel();
-            this.lbAnalogMeterBase = new LBSoft.IndustrialCtrls.Meters.LBAnalogMeter();
+            this.lbAnalogMeterBase = new SpindleTalker2.AnalogMeterControl();
             this.labelValue = new System.Windows.Forms.Label();
             this.groupBoxBase.SuspendLayout();
             this.tableLayoutPanelBase.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // groupBoxBase
-            // 
+            //
             this.groupBoxBase.Controls.Add(this.tableLayoutPanelBase);
             this.groupBoxBase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxBase.Location = new System.Drawing.Point(0, 0);
@@ -46,9 +46,9 @@
             this.groupBoxBase.TabIndex = 0;
             this.groupBoxBase.TabStop = false;
             this.groupBoxBase.Text = "GCSMeter";
-            // 
+            //
             // tableLayoutPanelBase
-            // 
+            //
             this.tableLayoutPanelBase.ColumnCount = 1;
             this.tableLayoutPanelBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelBase.Controls.Add(this.labelValue, 0, 1);
@@ -61,29 +61,26 @@
             this.tableLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanelBase.Size = new System.Drawing.Size(198, 210);
             this.tableLayoutPanelBase.TabIndex = 0;
-            // 
+            //
             // lbAnalogMeterBase
-            // 
+            //
             this.lbAnalogMeterBase.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbAnalogMeterBase.BackColor = System.Drawing.Color.Transparent;
             this.lbAnalogMeterBase.BodyColor = System.Drawing.SystemColors.Control;
             this.lbAnalogMeterBase.Location = new System.Drawing.Point(24, 6);
             this.lbAnalogMeterBase.MaxValue = 100D;
-            this.lbAnalogMeterBase.MeterStyle = LBSoft.IndustrialCtrls.Meters.LBAnalogMeter.AnalogMeterStyle.Circular;
             this.lbAnalogMeterBase.MinValue = 0D;
             this.lbAnalogMeterBase.Name = "lbAnalogMeterBase";
             this.lbAnalogMeterBase.NeedleColor = System.Drawing.Color.DarkRed;
-            this.lbAnalogMeterBase.Renderer = null;
             this.lbAnalogMeterBase.ScaleColor = System.Drawing.Color.White;
             this.lbAnalogMeterBase.ScaleDivisions = 6;
             this.lbAnalogMeterBase.ScaleSubDivisions = 3;
             this.lbAnalogMeterBase.Size = new System.Drawing.Size(150, 150);
             this.lbAnalogMeterBase.TabIndex = 0;
             this.lbAnalogMeterBase.Value = 0D;
-            this.lbAnalogMeterBase.ViewGlass = false;
-            // 
+            //
             // label1
-            // 
+            //
             this.labelValue.AutoSize = true;
             this.labelValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelValue.Font = new System.Drawing.Font("Digital-7", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -95,9 +92,9 @@
             this.labelValue.TabIndex = 1;
             this.labelValue.Text = "000.00 Hz";
             this.labelValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // GCSMeter
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBoxBase);
@@ -116,7 +113,7 @@
 
         private System.Windows.Forms.GroupBox groupBoxBase;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBase;
-        private LBSoft.IndustrialCtrls.Meters.LBAnalogMeter lbAnalogMeterBase;
+        private SpindleTalker2.AnalogMeterControl lbAnalogMeterBase;
         private System.Windows.Forms.Label labelValue;
     }
 }
