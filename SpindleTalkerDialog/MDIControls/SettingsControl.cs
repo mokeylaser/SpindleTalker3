@@ -80,6 +80,7 @@ namespace SpindleTalker2
             cmbDataBits.Text = VFDsettings.DataBits.ToString();
             cmbParity.Text = VFDsettings.Parity.ToString();
             cmbBaudRate.Text = VFDsettings.BaudRate.ToString();
+            numericUpDown4.Value = VFDsettings.VFD_ModBusID;
             checkBoxAutoConnectAtStartup.Checked = VFDsettings.AutoConnectAtStartup;
 
             if(!FillComPortList())
@@ -98,7 +99,50 @@ namespace SpindleTalker2
         private void cmbPortName_SelectedIndexChanged(object sender, EventArgs e)
         {
             VFDsettings.PortName = cmbPortName.SelectedItem.ToString();
+            _mainWindow._hyMotorControl._hyModbus.PortName = VFDsettings.PortName;
             _mainWindow.COMPortStatus(_mainWindow._hyMotorControl._hyModbus.VFDData.SerialConnected);
+        }
+
+        private void cmbBaudRate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(cmbBaudRate.SelectedItem?.ToString(), out int baud))
+            {
+                VFDsettings.BaudRate = baud;
+                _mainWindow._hyMotorControl._hyModbus.BaudRate = baud;
+            }
+        }
+
+        private void cmbDataBits_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(cmbDataBits.SelectedItem?.ToString(), out int dataBits))
+            {
+                VFDsettings.DataBits = dataBits;
+                _mainWindow._hyMotorControl._hyModbus.DataBits = dataBits;
+            }
+        }
+
+        private void cmbParity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Enum.TryParse(cmbParity.SelectedItem?.ToString(), out Parity parity))
+            {
+                VFDsettings.Parity = parity;
+                _mainWindow._hyMotorControl._hyModbus.Parity = (int)parity;
+            }
+        }
+
+        private void cmbStopBits_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Enum.TryParse(cmbStopBits.SelectedItem?.ToString(), out StopBits stopBits))
+            {
+                VFDsettings.StopBits = stopBits;
+                _mainWindow._hyMotorControl._hyModbus.StopBits = (int)stopBits;
+            }
+        }
+
+        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
+        {
+            VFDsettings.VFD_ModBusID = (int)numericUpDown4.Value;
+            _mainWindow._hyMotorControl._hyModbus.ModBusID = (int)numericUpDown4.Value;
         }
 
         private void checkBoxAutoConnectAtStartup_CheckedChanged(object sender, EventArgs e)

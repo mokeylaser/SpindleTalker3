@@ -137,6 +137,7 @@
             this.cmbBaudRate.Name = "cmbBaudRate";
             this.cmbBaudRate.Size = new System.Drawing.Size(69, 23);
             this.cmbBaudRate.TabIndex = 3;
+            this.cmbBaudRate.SelectedIndexChanged += new System.EventHandler(this.cmbBaudRate_SelectedIndexChanged);
             // 
             // cmbStopBits
             // 
@@ -151,6 +152,7 @@
             this.cmbStopBits.Name = "cmbStopBits";
             this.cmbStopBits.Size = new System.Drawing.Size(65, 23);
             this.cmbStopBits.TabIndex = 9;
+            this.cmbStopBits.SelectedIndexChanged += new System.EventHandler(this.cmbStopBits_SelectedIndexChanged);
             // 
             // cmbParity
             // 
@@ -165,6 +167,7 @@
             this.cmbParity.Name = "cmbParity";
             this.cmbParity.Size = new System.Drawing.Size(60, 23);
             this.cmbParity.TabIndex = 5;
+            this.cmbParity.SelectedIndexChanged += new System.EventHandler(this.cmbParity_SelectedIndexChanged);
             // 
             // cmbDataBits
             // 
@@ -179,6 +182,7 @@
             this.cmbDataBits.Name = "cmbDataBits";
             this.cmbDataBits.Size = new System.Drawing.Size(60, 23);
             this.cmbDataBits.TabIndex = 7;
+            this.cmbDataBits.SelectedIndexChanged += new System.EventHandler(this.cmbDataBits_SelectedIndexChanged);
             // 
             // lblComPort
             // 
@@ -285,6 +289,7 @@
             0,
             0,
             0});
+            this.numericUpDown4.ValueChanged += new System.EventHandler(this.numericUpDown4_ValueChanged);
             // 
             // label8
             // 

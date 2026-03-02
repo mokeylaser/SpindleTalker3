@@ -49,10 +49,13 @@ namespace SpindleTalker2
                 return;
             }
 
-            _hyMotorControl = new MotorControl(baudRate: 38400, portName: VFDsettings.PortName);
-            _hyMotorControl._hyModbus.PortName = VFDsettings.PortName;
-            _hyMotorControl._hyModbus.BaudRate = VFDsettings.BaudRate;
-            _hyMotorControl._hyModbus.ModBusID = VFDsettings.VFD_ModBusID;
+            _hyMotorControl = new MotorControl(
+                portName: VFDsettings.PortName,
+                baudRate: VFDsettings.BaudRate,
+                dataBits: VFDsettings.DataBits,
+                parity: (int)VFDsettings.Parity,
+                stopBits: (int)VFDsettings.StopBits,
+                modBusID: VFDsettings.VFD_ModBusID);
             _hyMotorControl._hyModbus.VFDData.OnSerialPortConnected += COMPortStatus;
             _hyMotorControl._hyModbus.VFDData.OnChanged += VFDdata_OnChanged;
             _hyMotorControl._hyModbus.OnWriteLog += HYmodbus_OnWriteLog;
@@ -82,6 +85,14 @@ namespace SpindleTalker2
 
             if (VFDsettings.AutoConnectAtStartup)
             {
+                // Ensure HYmodbus has the latest settings before auto-connecting
+                _hyMotorControl._hyModbus.PortName = VFDsettings.PortName;
+                _hyMotorControl._hyModbus.BaudRate = VFDsettings.BaudRate;
+                _hyMotorControl._hyModbus.DataBits = VFDsettings.DataBits;
+                _hyMotorControl._hyModbus.Parity = (int)VFDsettings.Parity;
+                _hyMotorControl._hyModbus.StopBits = (int)VFDsettings.StopBits;
+                _hyMotorControl._hyModbus.ModBusID = VFDsettings.VFD_ModBusID;
+
                 _hyMotorControl._hyModbus.Connect();
                 timerInitialPoll.Start();
                 stopWatchInitialPoll.Start();
@@ -158,6 +169,14 @@ namespace SpindleTalker2
             }
             else
             {
+                // Apply current settings from VFDsettings before connecting
+                _hyMotorControl._hyModbus.PortName = VFDsettings.PortName;
+                _hyMotorControl._hyModbus.BaudRate = VFDsettings.BaudRate;
+                _hyMotorControl._hyModbus.DataBits = VFDsettings.DataBits;
+                _hyMotorControl._hyModbus.Parity = (int)VFDsettings.Parity;
+                _hyMotorControl._hyModbus.StopBits = (int)VFDsettings.StopBits;
+                _hyMotorControl._hyModbus.ModBusID = VFDsettings.VFD_ModBusID;
+
                 stopWatchInitialPoll.Reset();
                 _hyMotorControl._hyModbus.Connect();
                 stopWatchInitialPoll.Start();
